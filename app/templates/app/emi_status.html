@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2 class="text-center">{{productData.name}} - ({{productData.reg_number}} )</h2>
+<h4 class="text-center">
+	Product Price is {{productData.price}} and 
+
+	{% if due_amount == 0 %}
+		Payment is Completed on Total {{total_emi.paid_amount__count}} EMIs
+	{% else %}
+		Due Amount is : {{due_amount}} (Completed {{total_emi.paid_amount__count}} EMIs)
+	{% endif %}
+</h4>
+<table class="table">
+	<tr>
+		<td>#</td>
+		<td>Paid</td>
+		<td>Date</td>
+	</tr>
+	{% for data in settlementData %}
+	<tr>
+		<td>{{data.id}}</td>
+		<td>{{data.paid_amount}}</td>
+		<td>{{data.date}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock%}
