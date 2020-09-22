@@ -28,3 +28,4 @@ web-build/
 .DS_Store
 .expo-shared
 .vscode
+db.sqlite3

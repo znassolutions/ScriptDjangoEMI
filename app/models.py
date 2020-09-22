@@ -18,3 +18,7 @@ class Sattlement(models.Model):
 
 	def details(self):
 		return f'{self.product.name} - INR {self.product.price}'
+
+	def __str__(self):
+		return self.product.name
+

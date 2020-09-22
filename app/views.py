@@ -5,8 +5,19 @@ from django.db.models import Sum, Count
 
 def dashboard(request):
 	productData = Product.objects.all() # Fetching Products Data (PK)
+	
+	datalist = [i.id for i in productData]
+	st_data = []
+	
+	for i in datalist:
+		settlementData = Sattlement.objects.filter(product__id=i) 
+		total = settlementData.aggregate(Sum('paid_amount'))
+		paid_amount = total['paid_amount__sum']
+		st_data.append(paid_amount)
+
 	context={
 		'productData':productData,
+		'st_data':st_data
 	}
 	return render(request, 'app/dashboard.html', context)
 
